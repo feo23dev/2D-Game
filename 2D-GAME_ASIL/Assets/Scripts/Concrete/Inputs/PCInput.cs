@@ -10,6 +10,8 @@ namespace UProje.Inputs
         public float Horizontal => Input.GetAxis("Horizontal");
 
         public float Vertical => Input.GetAxis("Vertical");
+
+        public bool jump => Input.GetButtonDown("Jump");
     }
 
 

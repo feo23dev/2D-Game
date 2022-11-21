@@ -9,6 +9,8 @@ namespace UProje.Abstract.Inputs
         public float Horizontal { get; }
         public float Vertical { get; }
 
+        public bool jump { get;}
+
     }
 
 }

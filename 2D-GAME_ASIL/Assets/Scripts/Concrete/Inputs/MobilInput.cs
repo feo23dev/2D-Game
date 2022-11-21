@@ -10,6 +10,8 @@ namespace UProje.Inputs
         public float Horizontal => throw new System.NotImplementedException();
 
         public float Vertical => throw new System.NotImplementedException();
+
+        public bool jump => throw new System.NotImplementedException();
     }
 
 
