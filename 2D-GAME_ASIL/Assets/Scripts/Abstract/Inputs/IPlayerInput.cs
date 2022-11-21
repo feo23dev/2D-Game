@@ -10,6 +10,8 @@ namespace UProje.Abstract.Inputs
         public float Vertical { get; }
 
         public bool jump { get;}
+        
+        public bool attack { get;}
 
     }
 

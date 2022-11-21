@@ -12,6 +12,16 @@ public class CharacterAnimation :  IAnimations
     {
         _animator = animator; 
     }
+
+    public void JumpAnimation(bool isJump)
+    {
+        _animator.SetBool("isJump",isJump);
+    }
+
+    public void AttackAnimation()
+    {
+        _animator.SetTrigger("attack");
+    }
     
     public void MoveAnimatiton(float Horizontal)
     {

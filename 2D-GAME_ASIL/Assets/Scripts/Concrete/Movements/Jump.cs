@@ -10,20 +10,29 @@ namespace UProje.Movements
     public class Jump : IJump
     {
         
-        float jumpForce = 250f;
+        float _jumpForce = 250f;
+        IOnGround _onGround;
         Rigidbody2D _rigidbody;
         
 
-        public Jump(Rigidbody2D rigidbody)
+        public Jump(Rigidbody2D rigidbody, IOnGround onGround)
         {
             _rigidbody = rigidbody;
+            _onGround = onGround;
+
         }
+
+        public bool isJump { get; set ; }
 
         public void Jumper()
         {
-            _rigidbody.velocity = Vector2.zero;
-            _rigidbody.AddForce(Vector2.up * jumpForce);
-            _rigidbody.velocity = Vector2.zero;
+            if(isJump && _onGround.onGround)
+            {
+                _rigidbody.velocity = Vector2.zero;
+                _rigidbody.AddForce(Vector2.up * _jumpForce);
+                _rigidbody.velocity = Vector2.zero;
+                isJump = false;
+            }
         }
     }
 

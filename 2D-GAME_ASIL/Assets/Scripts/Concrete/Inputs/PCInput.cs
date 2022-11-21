@@ -12,6 +12,8 @@ namespace UProje.Inputs
         public float Vertical => Input.GetAxis("Vertical");
 
         public bool jump => Input.GetButtonDown("Jump");
+
+        public bool attack => Input.GetButtonDown("Fire1");
     }
 
 

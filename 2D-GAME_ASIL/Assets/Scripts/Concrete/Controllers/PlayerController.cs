@@ -20,7 +20,8 @@ namespace UProje.Controllers
         IFlip _flip;
         IJump _jump;
         IOnGround _onGround;
-        public bool _isjump=false;
+        
+        
         
 
         private void Awake()
@@ -29,34 +30,40 @@ namespace UProje.Controllers
             _mover = new MoverWithTranslate(this); // can't instantiate interface( abstract class)
             _animation = new CharacterAnimation(GetComponent<Animator>());
             _flip = new FlipWithSRenderer(this);
-            _jump = new Jump(GetComponent<Rigidbody2D>());
             _onGround = GetComponent<OnGround>();
+            _jump = new JumpMulti(GetComponent<Rigidbody2D>(),_onGround);
+            
 
         }
 
         private void Update()
         {   
-            _horizontal = _IPlayerInput.Horizontal; 
-            _flip.FlipTheObject(_horizontal);
-            if(_IPlayerInput.jump && _onGround.onGround)
+            if(_IPlayerInput.attack)
             {
-                _isjump = true;
+                _animation.AttackAnimation();
+                return;
             }
+            _horizontal = _IPlayerInput.Horizontal; 
+            
+
+
+            if(_IPlayerInput.jump)
+            {
+                _jump.isJump = true;
+            }
+            _animation.JumpAnimation(_jump.isJump); 
             
         }
 
         private void FixedUpdate()
         {
-            if(_isjump)
-            {
-                _jump.Jumper();
-                _isjump = false;
-            }
+            
+
+            _flip.FlipTheObject(_horizontal);
+            _jump.Jumper();
+            
             _mover.Tick(_horizontal);
-            _animation.MoveAnimatiton(_horizontal);
-            
-            
-            
+            _animation.MoveAnimatiton(_horizontal); 
         }
     }
 

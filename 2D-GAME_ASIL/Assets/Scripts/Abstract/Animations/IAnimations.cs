@@ -9,6 +9,9 @@ namespace UProje.Abstract.Animations
         
         public void MoveAnimatiton(float HorizontalForce);
 
+        public void JumpAnimation(bool isJump);
+        public void AttackAnimation();
+
        
     }
 

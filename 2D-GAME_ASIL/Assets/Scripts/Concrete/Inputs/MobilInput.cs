@@ -12,6 +12,8 @@ namespace UProje.Inputs
         public float Vertical => throw new System.NotImplementedException();
 
         public bool jump => throw new System.NotImplementedException();
+
+        public bool attack => throw new System.NotImplementedException();
     }
 
 
