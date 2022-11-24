@@ -20,6 +20,7 @@ namespace UProje.Controllers
         IFlip _flip;
         IJump _jump;
         IOnGround _onGround;
+        [SerializeField] float _moveSpeed=3f;
         
         
         
@@ -27,7 +28,7 @@ namespace UProje.Controllers
         private void Awake()
         {
             _IPlayerInput = new PCInput();
-            _mover = new MoverWithTranslate(this); // can't instantiate interface( abstract class)
+            _mover = new MoverWithTranslate(this,_moveSpeed); // can't instantiate interface( abstract class)
             _animation = new CharacterAnimation(GetComponent<Animator>());
             _flip = new FlipWithSRenderer(this);
             _onGround = GetComponent<OnGround>();

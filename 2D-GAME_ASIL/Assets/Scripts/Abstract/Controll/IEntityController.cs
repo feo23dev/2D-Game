@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace UProje.Abstract.Controllers
 {
-    public interface IEntityController 
+    public interface IEntityController
     {
+        Transform transform { get;}
+
         
     }
 
