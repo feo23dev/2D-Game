@@ -9,17 +9,17 @@ namespace UProje.StateMachines.EnemyStates
     {
         public void OnEnter()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Idle On Enter Started");
         }
 
         public void OnExit()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Idle on Exit");
         }
 
         public void Tick()
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Idle on Tick");
         }
     }
 
