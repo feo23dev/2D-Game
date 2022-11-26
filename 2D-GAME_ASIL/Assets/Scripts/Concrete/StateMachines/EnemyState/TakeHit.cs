@@ -7,8 +7,10 @@ namespace UProje.StateMachines.EnemyStates
 {
     public class TakeHit : IState
     {
+        
         public void OnEnter()
         {
+
             Debug.Log("TakeHit on Enter");
         }
 
