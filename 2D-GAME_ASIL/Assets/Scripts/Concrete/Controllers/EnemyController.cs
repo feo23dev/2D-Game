@@ -18,6 +18,7 @@ namespace UProje.Controllers
         [SerializeField] float moveSpeed = 2f;
         [SerializeField] float chaseDistance = 3f;
         [SerializeField] float attackDistance = 1f;
+        [SerializeField] float attackCooldown = 2f;
         [SerializeField] bool isWalk = false;
         //[SerializeField] bool isTakeHit = false;
         [SerializeField] Transform[] patrols;
@@ -28,6 +29,8 @@ namespace UProje.Controllers
         StateMachine _stateMachine;
         IEntityController _player;
         IHealth _health;
+        IAttacker _attacker;
+        float maxAttackTime;
 
         
 
@@ -41,6 +44,7 @@ namespace UProje.Controllers
             _stateMachine = new StateMachine();
             _player = FindObjectOfType<PlayerController>();
             _health = GetComponent<IHealth>();
+            _attacker = GetComponent<IAttacker>();
 
         }
 
@@ -50,8 +54,8 @@ namespace UProje.Controllers
         {
             Idle idle = new Idle(_mover,_animations);
             Walk walk = new Walk(_flip,this,_mover,_animations,patrols);
-            ChasePlayer chasePlayer = new ChasePlayer(this,_player,_mover,_flip,_animations);
-            Attack attack = new Attack();
+            ChasePlayer chasePlayer = new ChasePlayer(_mover,_flip,_animations,isRight);
+            Attack attack = new Attack(_player.transform.GetComponent<IHealth>(),_flip,_animations,_attacker,maxAttackTime,isRight);
             TakeHit takeHit = new TakeHit(_health,_animations);
             Dead dead = new Dead(_animations,this);
 
@@ -98,6 +102,19 @@ namespace UProje.Controllers
         private float DistancePlayerEnemy()
         {
             return Vector2.Distance(transform.position, _player.transform.position);
+        }
+
+        private bool isRight()
+        {
+            Vector2 result = _player.transform.position - this.transform.position;
+            if(result.x > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
