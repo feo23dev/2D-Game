@@ -37,7 +37,7 @@ namespace UProje.Movements
                     _rigidbody.velocity = Vector2.zero;
 
                     _currentJumpCount++;
-                    Debug.Log(_currentJumpCount);
+                    
                 }
                 if (_onGround.onGround)
                 {

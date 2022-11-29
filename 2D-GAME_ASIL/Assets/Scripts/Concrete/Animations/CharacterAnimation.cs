@@ -28,5 +28,13 @@ public class CharacterAnimation :  IAnimations
         _animator.SetFloat("Blend",Mathf.Abs(Horizontal));
     }
 
+    public void TakeHitAnimation()
+    {
+        _animator.SetTrigger("takehit");
+    }
 
+    public void DeadAnimation()
+    {
+        _animator.SetTrigger("death");
+    }
 }

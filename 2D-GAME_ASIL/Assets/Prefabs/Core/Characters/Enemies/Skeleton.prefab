@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8531017706421043065}
   - component: {fileID: 1910998927814963801}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,6 +93,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 1271462944712487001, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271462944712487001, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018742753869094178, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2018742753869094178, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
+      propertyPath: patrols.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3714666704541522782, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
       propertyPath: m_Size.x
       value: 0.5
@@ -115,11 +131,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7168335701520506429, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.475
+      value: 10.05
       objectReference: {fileID: 0}
     - target: {fileID: 7168335701520506429, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.679
+      value: -0.38
       objectReference: {fileID: 0}
     - target: {fileID: 7168335701520506429, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -153,7 +169,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3195205160480848355, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c9c70f00a0e7ec54eb3139f3d5b666a1, type: 3}
 --- !u!4 &138763734167699952 stripped
 Transform:

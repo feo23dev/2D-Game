@@ -6,7 +6,8 @@ namespace UProje.Abstract.Combat
 {
     public interface IHealth : ITakeHit
     {
-        int CurrentHealth { get; }
+        //int CurrentHealth { get; }
+        bool IsDead { get;}
         event System.Action OnHealthChange;
 
 

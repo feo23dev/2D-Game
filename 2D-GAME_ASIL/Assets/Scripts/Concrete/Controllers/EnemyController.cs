@@ -5,6 +5,7 @@ using UProje.Abstract.Animations;
 using UProje.Abstract.Combat;
 using UProje.Abstract.Controllers;
 using UProje.Abstract.Movements;
+using UProje.Combats;
 using UProje.Movements;
 using UProje.StateMachines;
 using UProje.StateMachines.EnemyStates;
@@ -18,7 +19,7 @@ namespace UProje.Controllers
         [SerializeField] float chaseDistance = 3f;
         [SerializeField] float attackDistance = 1f;
         [SerializeField] bool isWalk = false;
-        [SerializeField] bool isTakeHit = false;
+        //[SerializeField] bool isTakeHit = false;
         [SerializeField] Transform[] patrols;
         IMover _mover;
         IAnimations _animations;
@@ -27,6 +28,8 @@ namespace UProje.Controllers
         StateMachine _stateMachine;
         IEntityController _player;
         IHealth _health;
+
+        
 
 
 
@@ -39,22 +42,18 @@ namespace UProje.Controllers
             _player = FindObjectOfType<PlayerController>();
             _health = GetComponent<IHealth>();
 
-
         }
 
-        private void OnEnable()
-        {
-            _health.OnHealthChange += HandleHealthChange;
-        }
+        
 
         private void Start()
         {
             Idle idle = new Idle(_mover,_animations);
-            Walk walk = new Walk(this,_mover,_animations,_flip,patrols);
-            ChasePlayer chasePlayer = new ChasePlayer();
+            Walk walk = new Walk(_flip,this,_mover,_animations,patrols);
+            ChasePlayer chasePlayer = new ChasePlayer(this,_player,_mover,_flip,_animations);
             Attack attack = new Attack();
-            TakeHit takeHit = new TakeHit();
-            Dead dead = new Dead();
+            TakeHit takeHit = new TakeHit(_health,_animations);
+            Dead dead = new Dead(_animations,this);
 
             _stateMachine.AddTransition(idle, walk, () => !idle.IsIdle );
             _stateMachine.AddTransition(idle, chasePlayer, () => DistancePlayerEnemy() < chaseDistance);
@@ -65,21 +64,20 @@ namespace UProje.Controllers
             _stateMachine.AddTransition(chasePlayer, idle, () => DistancePlayerEnemy() > chaseDistance);
             _stateMachine.AddTransition(attack, chasePlayer, () => DistancePlayerEnemy() > attackDistance);
 
-            _stateMachine.AddAnyState(dead, () => _health.CurrentHealth < 1);
-            _stateMachine.AddAnyState(takeHit, () => isTakeHit);
-            _stateMachine.AddTransition(takeHit,chasePlayer,() => isTakeHit == false);
+            _stateMachine.AddAnyState(dead, () => _health.IsDead);
+            _stateMachine.AddAnyState(takeHit, () => takeHit.isTakeHit);
+            _stateMachine.AddTransition(takeHit,chasePlayer,() => takeHit.isTakeHit == false);
 
             _stateMachine.SetState(idle);
 
+            
+
 
 
 
         }
 
-        private void HandleHealthChange()
-        {
-            isTakeHit = true;
-        }
+        
 
         private void Update()
         {

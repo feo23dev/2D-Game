@@ -12,8 +12,11 @@ namespace UProje.Combats
 
         [SerializeField] int maxHealth = 3;
         int _currentHealth;
-        public int CurrentHealth => _currentHealth;
+
+        [SerializeField]  public bool IsDead => _currentHealth < 1 ;
+
         public event Action OnHealthChange;
+        public event Action OnDeath;
 
         
 
@@ -24,9 +27,12 @@ namespace UProje.Combats
         }
         public void TakeHit(IAttacker attacker)
         {
+            if(IsDead) return;
             _currentHealth -= attacker.Damage;
             OnHealthChange?.Invoke();
         }
+
+       
     }
 
 

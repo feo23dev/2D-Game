@@ -11,6 +11,8 @@ namespace UProje.Abstract.Animations
 
         public void JumpAnimation(bool isJump);
         public void AttackAnimation();
+        void TakeHitAnimation();
+        void DeadAnimation();
 
        
     }
