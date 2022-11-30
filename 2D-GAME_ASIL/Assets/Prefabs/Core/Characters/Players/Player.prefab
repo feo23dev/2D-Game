@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1196485929431393745}
   m_Layer: 7
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 1196485930251220132}
   m_Layer: 7
   m_Name: SwordEffect
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 8724514186481713972}
   m_Layer: 7
   m_Name: AttackDirection
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

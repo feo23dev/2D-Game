@@ -30,6 +30,7 @@ namespace UProje.Controllers
         IEntityController _player;
         IHealth _health;
         IAttacker _attacker;
+        IStopOnEdge _stopEdge;
         float maxAttackTime;
 
         
@@ -45,6 +46,7 @@ namespace UProje.Controllers
             _player = FindObjectOfType<PlayerController>();
             _health = GetComponent<IHealth>();
             _attacker = GetComponent<IAttacker>();
+            _stopEdge = GetComponent<IStopOnEdge>();
 
         }
 
@@ -54,7 +56,7 @@ namespace UProje.Controllers
         {
             Idle idle = new Idle(_mover,_animations);
             Walk walk = new Walk(_flip,this,_mover,_animations,patrols);
-            ChasePlayer chasePlayer = new ChasePlayer(_mover,_flip,_animations,isRight);
+            ChasePlayer chasePlayer = new ChasePlayer(this,_mover,_flip,_animations,_stopEdge,isRight);
             Attack attack = new Attack(_player.transform.GetComponent<IHealth>(),_flip,_animations,_attacker,maxAttackTime,isRight);
             TakeHit takeHit = new TakeHit(_health,_animations);
             Dead dead = new Dead(_animations,this);

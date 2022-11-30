@@ -38,6 +38,7 @@ namespace UProje.StateMachines.EnemyStates
 
         public void OnEnter()
         {
+            Debug.Log("Attackiiimg");
             
         }
 
@@ -48,6 +49,7 @@ namespace UProje.StateMachines.EnemyStates
 
         public void Tick()
         {
+            Debug.Log("Ataack tickk");
             _currentAttackTime += Time.deltaTime;
             {
                 if(_currentAttackTime > _maxAttackTime)
